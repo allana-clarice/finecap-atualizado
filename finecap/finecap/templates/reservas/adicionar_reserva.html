@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Cadastrar Nova Reserva</h1>
+ 
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label "><strong>Cnpj</strong></label>
+        {{form.cnpj}}
+      </div>
+    
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label"><strong>Nome da empresa</strong></label>
+        {{form.nome_empresa}}
+      </div>
+    
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label"><strong>Categoria da empresa</strong></label>
+        {{ form.categoria_empresa }}
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label"><strong>stand</strong></label>
+        {{ form.stand }}
+      </div>
+  
+  <button type="submit" class="btn btn-secondary">Enviar</button>
+  <a href="{% url 'listar_reservas' %}" class="btn btn-secondary">Voltar</a>
+{% endblock %}

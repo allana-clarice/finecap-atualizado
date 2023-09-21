@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Detalhes da reserva</h2>
+<hr>
+<div class="container text-center">
+    <div class="row">
+      <div class="col m-4 text-center">
+        <p><strong>Cnpj: </strong>{{reserva.cnpj}}</p>
+        <p><strong>Nome da empresa: </strong>{{reserva.nome_empresa}}</p>
+        <p><strong>Nome da categoria: </strong>{{reserva.categoria_empresa}}</p>
+        <p><strong>Stand: </strong>{{reserva.stand}}</p>
+        <p><strong>Localização: </strong>{{reserva.stand.localizacao}}</p>
+        <p><strong>Valor: </strong>{{reserva.stand.valor}}</p>
+        <br><br><br><br><br>
+
+
+
+      </div>
+      <a href="{% url 'listar_reservas' %}" class="btn btn-danger">Voltar</a>
+    </div>
+  </div>
+{% endblock %}
