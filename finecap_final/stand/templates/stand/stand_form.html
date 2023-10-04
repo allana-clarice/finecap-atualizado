@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<div style="width: 700px; display: grid; justify-content: center; align-items: center; margin-top: 50px; margin-bottom: 50px;">
+    <h2 style="margin-top: 50px;"> Cadastrar Stand:</h2>
+       
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="localizacao" class="form-label">Localização:</label>
+            {{ form.localizacao }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="valor" class="form-label">Valor:</label>
+            {{ form.valor }}
+        </div>
+        <br><br>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+</div>
+      
+{% endblock %}
+   

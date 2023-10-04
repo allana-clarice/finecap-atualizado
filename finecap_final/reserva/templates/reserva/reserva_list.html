@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+  .inicio1 {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .inicio2 {
+    width: 100%;
+  }
+</style>
+{% endblock %}
+
+{% block main %}
+
+
+<!-- ======= Seção Inicial ======= -->
+<section id="hero" class="hero">
+  <div class="inicio1">
+    <div class="inicio2">
+      <h2>Bem vindo ao site!</h2>
+      <a href="{% url 'reserva:reserva_cadastrar' %}" class="btn btn-primary btn-sm">Nova Reserva</a>
+      <br>
+      <br>
+
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+<!-- ======= Seção de reservasa ======= -->
+<section id="portfolio" class="portfolio sections-bg">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-header">
+      <h2>Reservas cadastradas</h2>
+    </div>
+
+    <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
+      data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="row gy-4 portfolio-container">
+
+        {% for object in object_list %}
+        <div class="col-xl-4 col-md-6 portfolio-item filter-app">
+          <div class="portfolio-wrap">
+            <a href="" data-gallery="portfolio-gallery-app" class="glightbox">
+              {% if object.imagem %}
+              <img src="{{ object.imagem.url }}" class="img-fluid" alt="">
+              {% endif %}
+            </a>
+            <div class="portfolio-info">
+              <h4> Nome da empresa: {{ object.nome_empresa }}</a></h4>
+              <h4> Categoria da empresa: {{ object.categoria_empresa }} </a></h4>
+              <td>
+                <a href="{% url 'reserva:reserva_editar' object.pk %}" class="btn btn-primary btn-sm">Editar</a>
+                <a href="{% url 'reserva:reserva_deletar' object.pk %}" class="btn btn-danger btn-sm">Remover</a>
+                <a href="{% url 'reserva:reserva_detalhar' object.pk %}" class="btn btn-primary btn-sm">Detalhar</a>
+              </td>
+            </div>
+          </div>
+        </div><!-- End Item -->
+
+        {% empty %}
+        <tr>
+          <td colspan="4">
+            <p>Não existem reservas cadastradas...</p>
+          </td>
+        </tr>
+
+        {% endfor %}
+        <div class="pagination">
+          <span class="step-links">
+              {% if page_obj.has_previous %}
+                  <a href="?page=1">&laquo; first</a>
+                  <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+              {% endif %}
+        
+              <span class="current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+        
+              {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}">next</a>
+                  <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+              {% endif %}
+          </span>
+        </div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="card text-center">
+    <div class="card-header">
+      <h2>Detalhes da Reserva</h2>
+    </div>
+    <div class="card-body">
+      <h4 class="card-text">Nome da empresa: {{ object.nome_empresa }}</h4>
+      <p class="card-text">Categoria: {{ object.categoria_empresa }}</p>
+      <p class="card-text">Cnpj: {{ object.cnpj }}</p>
+      <p class="card-text">Localização: {{ object.stand.localizacao }}</p>
+      <p class="card-text">Valor: {{ object.stand.valor }}</p>
+      <p class="card-text">Quitado: {% if object.quitado %} Sim {% else %} Não {% endif %} </p>
+
+    </div>
+    <div class="card-footer text-muted">
+        <br>
+        <a href="{% url 'reserva:reserva_listar' %}"class="btn btn-primary btn-sm">Voltar</a>
+    </div>
+</div>
+{% endblock %}
